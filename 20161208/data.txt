@@ -1,0 +1,13 @@
+PPAP
+I have a pen.
+I have an apple.
+ummm.
+apple-pen.
+I have a pen.
+I have a pine-apple.
+ummm.
+pine-apple-pen.
+apple-pen...
+pine-apple-pen...
+ummm.
+pen-pine-apple-apple-pen.
