@@ -1,10 +1,14 @@
 	public class Aloha {
 		public static void main(String[] args) {
 			// Alohamanクラスの、インスタンスをつくる
-			Alohaman am = new Alohaman();
+			Alohaman am = new Alohaman(args[0], args[1]);
 
 			// am に、命令する。
-			am.sayAloha(5901, 3);
+			// am.sayAloha(5901, 3);
+			int data1 = Integer.parseInt(args[2]);
+			int data2 = Integer.parseInt(args[3]);
+
+			am.sayAloha(data1, data2);
 		}
 	}
 
@@ -20,6 +24,12 @@
 			// データを準備する。
 			this.msg = "ALOHA!";
 			this.msg2 = "あおき！";
+		}
+		public Alohaman(String m1, String m2) {
+			// constructor(コンストラクタ)
+			// データを準備する。
+			this.msg = m1;
+			this.msg2 = m2;
 		}
 
 		public void sayAloha(){
