@@ -1,19 +1,42 @@
-// Aloha.java
+// Aloha2.java
 
-public class Aloha {
+public class Aloha2 {
   public static void main(String[] args) {
-    Alohaman am = new Alohaman();
-    am.sayAloha(37, 2);
+    Alohaman2 am = new Alohaman(args);
+    am.sayAloha();
   }
 }
 
-class Alohaman {
+
+
+
+
+class Alohaman2 {
   private String msg;
   private String msg2;
 
-  public Alohaman() {
+  public Alohaman2(String[] data) {
+    int num = data.length;
+
+    if(num == 4){
+      this.msg = data[2];
+      this.msg2 = data[3];
+    } else {
+      this.msg = "ALOHA!";
+      this.msg2 = "アロハ！";
+    }
+  }
+
+  public Alohaman2() {
+    System.out.println("x<4");
     this.msg = "ALOHA!";
     this.msg2 = "アロハ！";
+  }
+
+  public Alohaman2(String m, String m2) {
+    System.out.println("x=4");
+    this.msg = m;
+    this.msg2 = m2;
   }
 
   public void sayAloha() {
