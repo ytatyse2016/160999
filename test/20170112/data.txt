@@ -1,0 +1,6 @@
+ALOHAIchiki,piano,59
+Rokuhara,cb,42
+Hachisuka,vn,39
+Nishiguchi,perc,28
+Hosoda,va,19
+
