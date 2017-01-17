@@ -1,6 +1,6 @@
 // AlohaWindow
-//  GUIの練習。
-//  テキストエディタをつくる前に。
+//  GUIの練習�??
+//  �?キストエ�?ィタをつくる前に�?
 
 import java.awt.*;
 import java.awt.event.*;
@@ -34,7 +34,7 @@ class AlohaWindowMan implements ActionListener{
 		frame.setSize(600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// ボタン、フィールド、パネルをつくる
+		// ボタン、フィールド�?�パネルをつくる
 		btnOpen = new JButton("OPEN");
 		btnOpen.addActionListener(this);
 		btnOpen.setActionCommand("open");
@@ -64,18 +64,18 @@ class AlohaWindowMan implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		// クリックされた場合の処理
+		// クリ�?クされた�?�合�?�処�?
 		String cmd = ae.getActionCommand();
 
 		if(cmd.equals("open")) {
 			fileName.setText("OPEN");
 
-			// ファイルを読むためのデータ準備
+			// ファイルを読�?ための�?ータ準備
 			String textFile = fileName.getText();
 			FileReader fr;
 			BufferedReader br;
 
-			// ファイルの読み書き
+			// ファイルの読み書�?
 			try {
 				fr = new FileReader(textFile);
 				br = new BufferedReader(fr);
@@ -93,3 +93,4 @@ class AlohaWindowMan implements ActionListener{
 		}
 	}
 }
+
