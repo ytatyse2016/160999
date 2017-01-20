@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  <script>
+    window.addEventListener("load", init);
+
+    function init(){
+      // stageをつくる
+      var stage = new createjs.Stage("canvas");
+
+      // shapeをつくる
+      var shape = new createjs.Shape();
+      shape.graphics.beginFill("#ff0000");   // 色
+      // shape.graphics.beginStroke("Red");
+      // shape.graphics.setStrokeStyle(6);
+      shape.graphics.drawCircle(100, 100, 60);  // かたち、場所
+      shape.graphics.beginFill("#00ff00");   // 色
+      shape.graphics.drawRoundRect(160, 40, 120, 120,  30, 30);
+      shape.graphics.beginFill("#0000ff");   // 色
+      shape.graphics.drawRect(280, 40, 120, 120); // 四角形
+
+      shape.graphics.drawPolyStar(500, 200,  80,  5, 0.6, -90);
+
+      // 三角形(tri-angle)をつくる
+      shape.graphics.moveTo(0, 0)
+            .lineTo(100, 0)
+            .lineTo(0, 100)
+            .lineTo(0, 0);
+
+      // 矢印(⇧)をつくる
+      var x = 500;
+      var y = 0;
+      var h = 110;
+      var h1 = 70;
+      var h2 = h - h1;
+      var w1 = 30;
+      var w2 = 30;
+      shape.graphics.moveTo(x, y)
+            .lineTo(x+w1+w2, h1)
+            .lineTo(x+w1, h1)
+            .lineTo(x+w1, h)
+            .lineTo(x-w1, h)
+            .lineTo(x-w1, h1)
+            .lineTo(x-w1-w2, h1)
+            .lineTo(x, y);
+
+
+      // その他
+      shape.visible = true;
+      // shape.scaleY = 2.0;
+
+
+
+      // 小さい○をつくる
+      shape.graphics.drawCircle(200, 200, 10);
+
+      // 線をひく
+      // shape.graphics.beginStroke("Red");
+      // shape.graphics.setStrokeStyle(5);
+      // shape.graphics.moveTo(200, 200)
+            // .lineTo(300, 300);
+
+
+      // stageに、shapeを、のせる
+      stage.addChild(shape);
+
+
+
+      // テキスト（文字）をつくる
+      var txt = new createjs.Text("ALOHA!", "48px sans-serif", "Brown");
+      txt.x = 200;
+      txt.y = 200;
+      txt.textAlign = "center";
+      txt.textBaseline = "middle";
+      stage.addChild(txt);
+
+      // テキストを、変える
+      txt.text = "HELLO";
+
+
+      // 表示する
+      stage.update();
+    }
+  </script>
+</head>
+<body>
+  <canvas id="canvas" width="640" height="320"></canvas>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  <script>
+    window.addEventListener("load", init);
+
+    function init(){
+      // stageをつくる
+      var stage = new createjs.Stage("canvas");
+
+      // 画像データ
+      var img = new createjs.Bitmap("toki.png");
+      stage.addChild(img);
+
+
+      // 表示する
+      createjs.Ticker.on("tick", function(){
+        stage.update();
+      });
+
+    }
+  </script>
+</head>
+<body>
+  <canvas id="canvas" width="640" height="320"></canvas>
+</body>
+</html>
