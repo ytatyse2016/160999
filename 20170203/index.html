@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>createjs: keyboard</title>
+</head>
+<body>
+	<h1>createjs: keyboard</h1>
+	<hr>
+
+	<canvas id="myCanvas" width="900" height="600"></canvas>
+
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<script>
+		window.addEventListener('load', init);
+
+		function init() {
+			// stage をつくる
+			var stage = new createjs.Stage('myCanvas');
+
+			// shape をつくる
+			var shape = new createjs.Shape();
+			shape.graphics.beginFill("#0000ff");
+			shape.graphics.drawRect(0, 0, 10, 10);
+
+			// 緑の shape2～ をつくる
+			var shape2 = new createjs.Shape();
+			shape2.x = 500;
+			shape2.y = 0;
+			var shape3 = new createjs.Shape();
+			shape3.x = 250;
+			shape3.y = 150;
+			var shape4 = new createjs.Shape();
+			shape4.x = 700;
+			shape4.y = 500;
+
+			// のせる
+			stage.addChild(shape);
+			stage.addChild(shape2);
+			stage.addChild(shape3);
+			stage.addChild(shape4);
+
+
+			stage.update();
+
+			// EventListenerを、つける
+			window.addEventListener('keydown', handleKeydown);
+
+			// アニメーションのデータ準備
+			var muki = 0;
+			var muki2 = 0;
+
+
+			// キーを押したら、上下左右を決める
+			function handleKeydown(event) {
+				// キー番号を、しらべる
+				var keyCode = event.keyCode;
+
+				if(keyCode == 39) {
+					muki2 = 0;
+					muki = +1;     // 右
+				}
+				if(keyCode == 37) {
+					muki2 = 0;
+					muki = -1;	// 左
+				}
+				if(keyCode == 38) {
+					muki = 0;
+					muki2 = -1;	// 上
+				}
+				if(keyCode == 40) {
+					muki = 0;
+					muki2 = +1;	// 下
+				}
+				if(keyCode == 27) {
+					muki = 0;
+					muki2 = 0;
+				}
+
+			}
+
+			// アニメーション
+			createjs.Ticker.on('tick', function(){
+				shape.x += 4 * muki;
+				shape.y += 4 * muki2;
+				// もし、あたったら、ゲームおわり。ぜんぶ、とまる。
+				var point = shape.localToLocal(0, 0, shape2);
+				var isHit = shape2.hitTest(point.x,  point.y);
+				if(isHit == true) {
+					// あたったとき
+					shape2.graphics.clear();
+					shape2.graphics.beginFill("#ff0000");
+					shape2.graphics.drawPolyStar(0, 200, 75, 10, 0.6, -90);
+				} else {
+					// あたってないとき
+					shape2.graphics.clear();
+					shape2.graphics.beginFill("#00ff00");
+					shape2.graphics.drawPolyStar(0, 200, 75, 10, 0.6, -90);
+				}
+				var point2 = shape.localToLocal(0, 0, shape3);
+				var isHit2 = shape3.hitTest(point2.x,  point2.y);
+				if(isHit2 == true) {
+					// あたったとき
+					shape3.graphics.clear();
+					shape3.graphics.beginFill("#ff0000");
+					shape3.graphics.drawPolyStar(0, 200, 75, 10, 0.6, -90);
+				} else {
+					// あたってないとき
+					shape3.graphics.clear();
+					shape3.graphics.beginFill("#00ff00");
+					shape3.graphics.drawPolyStar(0, 200, 75, 10, 0.6, -90);
+				}
+				var point3 = shape.localToLocal(0, 0, shape4);
+				var isHit3 = shape4.hitTest(point3.x,  point3.y);
+				if(isHit3 == true) {
+					// あたったとき
+					shape4.graphics.clear();
+					shape4.graphics.beginFill("#ff0000");
+					shape4.graphics.drawPolyStar(700, 500, 75, 10, 0.6, -90);
+				} else {
+					// あたってないとき
+					shape4.graphics.clear();
+					shape4.graphics.beginFill("#00ff00");
+					shape4.graphics.drawPolyStar(700, 500, 75, 10, 0.6, -90);
+				}
+				stage.update();
+			});
+
+}
+</script>
+
+</body>
+</html>

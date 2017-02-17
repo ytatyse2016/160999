@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CreateJS</title>
+</head>
+<body>
+	<h1>CreateJS</h1>
+	<hr>
+
+	<canvas id="myCanvas" width="1500" height="600"></canvas>
+
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<script>
+		// このページを表示するとき、init を実行せよ。
+		window.addEventListener('load', init);
+
+		// init
+		function init() {
+			// stage（表示する場所; <canvas>）をつくる
+			var stage = new createjs.Stage("myCanvas");
+			// マウスオーバーの準備
+			stage.enableMouseOver();
+
+			// shapeをつくる
+			var shape = new createjs.Shape();
+			//   色をきめる
+			shape.graphics.beginFill("#ff0000");  // 赤
+			//   形をつくる
+			shape.graphics.drawRect(200, 100, 80, 80);
+
+			// EventListenerをつける
+			shape.addEventListener('click', handleClick);
+			window.addEventListener('click', handleClick);
+			shape.addEventListener('mouseover', handleMouseOver);
+
+			// flag変数を、つくる
+			var flag = 0;
+			// スピード変数を、つくる
+			var speed = 1;
+
+
+			// stageに、shapeを、のせる
+			stage.addChild(shape);
+
+			// アニメーションさせる
+			// 方向( muki )のデータを、つくる
+			var muki = +1;
+			createjs.Ticker.on('tick', function(){
+				// 場所をかえる
+				shape.x += 5 * muki * speed;
+
+				// もし、いちばん右に行ったら、向きを -1 にする。
+				if(shape.x > 1220) {
+					muki = -1;
+				}
+				// もし、いちばん左に行ったら、向きを +1 にする。
+				if(shape.x < 0) {
+					muki = +1;
+				}
+
+				// 表示する
+				stage.update();
+
+
+			});
+
+			// クリックしたときの、処理
+			function handleClick(event) {
+				// スピードUP
+				speed = speed * 2;
+
+				// 色を変える
+				if(flag == 0) {
+					// 色を変える（青にする）。
+					shape.graphics.clear();
+					shape.graphics.beginFill("#0000ff");
+					shape.graphics.drawRect(200, 100, 80, 80);
+
+					// 変数を、1にする。
+					flag = 1;
+				} else {
+					// 色を変える（赤にする）。
+					shape.graphics.clear();
+					shape.graphics.beginFill("#ff0000");
+					shape.graphics.drawRect(200, 100, 80, 80);
+
+					// 変数を、0にする。
+					flag = 0;
+				}
+			}
+
+			// マウスオーバーしたときの、処理
+			function handleMouseOver(event) {
+				// 方向(muki)を変える
+				muki = muki * -1;
+			}
+		} // function init() の終わり
+
+	</script>
+</body>
+</html>

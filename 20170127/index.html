@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CreateJS</title>
+</head>
+<body>
+	<h1>CreateJS</h1>
+	<hr>
+
+	<canvas id="myCanvas" width="900" height="600"></canvas>
+
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<script>
+		// このページを表示するとき、init を実行せよ。
+		window.addEventListener('load', init);
+
+		// init
+		function init() {
+			// stage（表示する場所; <canvas>）をつくる
+			var stage = new createjs.Stage("myCanvas");
+
+			// shapeをつくる
+			var shape = new createjs.Shape();
+			//   色をきめる
+			shape.graphics.beginFill("#ff0000");  // 赤
+			//   形をつくる
+			shape.graphics.drawRect(200, 100, 80, 80);
+
+
+			// stageに、shapeを、のせる
+			stage.addChild(shape);
+
+			// アニメーションさせる
+			createjs.Ticker.on('tick', function(){
+				// 場所をかえる
+				shape.x += 5;
+
+				// もし、いちばん右に着いたら、最初の場所にもどる。
+				if(shape.x > 900) {
+					shape.x = 0;
+				}
+
+				// 表示する
+				stage.update();
+			});
+		}
+	</script>
+</body>
+</html>

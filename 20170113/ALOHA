@@ -1,1 +1,71 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class TestButton2 {
+	public static void main(String[] args) {
+		TestButtonMan2 man = new TestButtonMan2();
+	}
+}
+
+
+class TestButtonMan2 implements ActionListener{
+	// �?ータ
+	JFrame frame;
+	JButton button1;		// ボタン?��（左?�?
+	JButton button2;		// ボタン?��（右?�?
+	JTextField fileName;
+	JPanel panel;
+
+	// メソ�?�?
+	// コンストラクタ(constructor)
+	public TestButtonMan2() {
+		// frameをつくる
+		frame = new JFrame("TestButton2");
+		frame.setLocation(400, 400);		// 場�?
+		frame.setSize(500, 500);			// サイズ
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// ボタン(2�?)、フィールド�?�パネルをつくる
+		button1 = new JButton("HELLO");		// ボタン?�?
+		button1.addActionListener(this);
+		button1.setActionCommand("btn1");	// ボタンコマン�?
+
+		button2 = new JButton("あおき�?");	// ボタン?�?
+		button2.addActionListener(this);
+		button2.setActionCommand("btn2");	// ボタンコマン�?
+
+		fileName = new JTextField("ALOHA", 20);	  // フィール�?
+		panel = new JPanel();					  // パネル
+
+		// のせる
+		panel.add(fileName);	// パネルに、フィールドをのせる
+		panel.add(button1);		// パネルに、�?�タン?��をのせる
+		panel.add(button2);		// パネルに、�?�タン?��をのせる
+		Container con = frame.getContentPane();
+		con.setLayout(new GridLayout(2, 1));
+		con.add(panel);			// ウィンドウに、パネルを�?�せる
+
+		// 表示する
+		frame.setVisible(true);
+	}
+
+	// クリ�?クしたとき�?�仕�?
+	public void actionPerformed(ActionEvent ae) {
+		// ボタンコマンドを、しらべ�?
+		String btn = ae.getActionCommand();
+
+		// もし「左」�?�タン(btn1)なら�??"HELLO"と表示
+		// もし「右」�?�タン(btn2)なら�??"あおき�?"と表示
+		if(btn.equals("btn1")) {
+			// "HELLO"と表示する
+			fileName.setText("HELLO");
+
+		} else if(btn.equals("btn2")) {
+			// "あおき�?"と表示する
+			fileName.setText("あおき�?");
+
+		}
+	}
+}
 
